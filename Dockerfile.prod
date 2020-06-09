@@ -1,0 +1,16 @@
+FROM node:12-alpine
+
+EXPOSE 5078
+
+RUN mkdir -p /usr/bin/app/data
+RUN chmod +x /usr/bin/app/data
+
+WORKDIR /usr/bin/app
+
+COPY ./package.json ./
+COPY ./dist ./dist
+COPY ./.env ./
+
+RUN yarn 
+
+CMD ["yarn", "start"]
